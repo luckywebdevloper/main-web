@@ -34,6 +34,9 @@ import TermAndCondition from "./components/Term/TermAndCondition";
 import Charts from "./components/Charts/Charts";
 
 function App() {
+  window.addEventListener("contextmenu", (e) => {
+    e.preventDefault();
+  });
   const { isAuthenticated, user, message, error, loading } = useSelector(
     (state) => state.user
   );
