@@ -57,179 +57,175 @@ function App() {
 
   return (
     <Router>
-      {loading ? (
-        <Loader />
-      ) : (
-        <>
-          <Header isAuthenticated={isAuthenticated} user={user} />
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/courses" element={<Courses />} />
+      <>
+        <Header isAuthenticated={isAuthenticated} user={user} />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/courses" element={<Courses />} />
 
-            <Route
-              path="/course/:id"
-              element={
-                <ProtectedRoute isAuthenticated={isAuthenticated}>
-                  <CoursePage user={user} />
-                </ProtectedRoute>
-              }
-            />
+          <Route
+            path="/course/:id"
+            element={
+              <ProtectedRoute isAuthenticated={isAuthenticated}>
+                <CoursePage user={user} />
+              </ProtectedRoute>
+            }
+          />
 
-            <Route path="/contact" element={<Contact_page />} />
-            <Route path="/termandcondition" element={<TermAndCondition />} />
+          <Route path="/contact" element={<Contact_page />} />
+          <Route path="/termandcondition" element={<TermAndCondition />} />
 
-            <Route path="/request" element={<Request />} />
-            <Route path="/about" element={<About />} />
+          <Route path="/request" element={<Request />} />
+          <Route path="/about" element={<About />} />
 
-            <Route
-              path="/profile"
-              element={
-                <ProtectedRoute isAuthenticated={isAuthenticated}>
-                  <Profile user={user} />
-                </ProtectedRoute>
-              }
-            />
+          <Route
+            path="/profile"
+            element={
+              <ProtectedRoute isAuthenticated={isAuthenticated}>
+                <Profile user={user} />
+              </ProtectedRoute>
+            }
+          />
 
-            <Route
-              path="/changepassword"
-              element={
-                <ProtectedRoute isAuthenticated={isAuthenticated}>
-                  <ChangePassword />
-                </ProtectedRoute>
-              }
-            />
-            <Route
-              path="/updateprofile"
-              element={
-                <ProtectedRoute isAuthenticated={isAuthenticated}>
-                  <UpdateProfile user={user} />
-                </ProtectedRoute>
-              }
-            />
-            <Route
-              path="/chart"
-              element={
-                <ProtectedRoute
-                  isAuthenticated={!isAuthenticated}
-                  redirect="/chart"
-                >
-                  <Charts />
-                </ProtectedRoute>
-              }
-            />
-            <Route
-              path="/login"
-              element={
-                <ProtectedRoute
-                  isAuthenticated={!isAuthenticated}
-                  redirect="/profile"
-                >
-                  <Login />
-                </ProtectedRoute>
-              }
-            />
-            <Route
-              path="/register"
-              element={
-                <ProtectedRoute
-                  isAuthenticated={!isAuthenticated}
-                  redirect="/profile"
-                >
-                  <Register />
-                </ProtectedRoute>
-              }
-            />
-            <Route
-              path="/forgetpassword"
-              element={
-                <ProtectedRoute isAuthenticated={!isAuthenticated} redirect="/">
-                  <ForgetPassword />
-                </ProtectedRoute>
-              }
-            />
+          <Route
+            path="/changepassword"
+            element={
+              <ProtectedRoute isAuthenticated={isAuthenticated}>
+                <ChangePassword />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/updateprofile"
+            element={
+              <ProtectedRoute isAuthenticated={isAuthenticated}>
+                <UpdateProfile user={user} />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/chart"
+            element={
+              <ProtectedRoute
+                isAuthenticated={!isAuthenticated}
+                redirect="/chart"
+              >
+                <Charts />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/login"
+            element={
+              <ProtectedRoute
+                isAuthenticated={!isAuthenticated}
+                redirect="/profile"
+              >
+                <Login />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/register"
+            element={
+              <ProtectedRoute
+                isAuthenticated={!isAuthenticated}
+                redirect="/profile"
+              >
+                <Register />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/forgetpassword"
+            element={
+              <ProtectedRoute isAuthenticated={!isAuthenticated} redirect="/">
+                <ForgetPassword />
+              </ProtectedRoute>
+            }
+          />
 
-            <Route
-              path="/resetpassword/:token"
-              element={
-                <ProtectedRoute
-                  isAuthenticated={!isAuthenticated}
-                  redirect="/profile"
-                >
-                  <ResetPassword />
-                </ProtectedRoute>
-              }
-            />
+          <Route
+            path="/resetpassword/:token"
+            element={
+              <ProtectedRoute
+                isAuthenticated={!isAuthenticated}
+                redirect="/profile"
+              >
+                <ResetPassword />
+              </ProtectedRoute>
+            }
+          />
 
-            <Route
-              path="/subscribe"
-              element={
-                <ProtectedRoute isAuthenticated={isAuthenticated}>
-                  <Subscribe user={user} />
-                </ProtectedRoute>
-              }
-            />
+          <Route
+            path="/subscribe"
+            element={
+              <ProtectedRoute isAuthenticated={isAuthenticated}>
+                <Subscribe user={user} />
+              </ProtectedRoute>
+            }
+          />
 
-            <Route path="*" element={<NotFound />} />
+          <Route path="*" element={<NotFound />} />
 
-            <Route path="/paymentsuccess" element={<PaymentSuccess />} />
+          <Route path="/paymentsuccess" element={<PaymentSuccess />} />
 
-            <Route path="/paymentfail" element={<PaymentFail />} />
+          <Route path="/paymentfail" element={<PaymentFail />} />
 
-            {/* Admin Routes */}
-            <Route
-              path="/admin/dashboard"
-              element={
-                <ProtectedRoute
-                  adminRoute={true}
-                  isAuthenticated={isAuthenticated}
-                  isAdmin={user && user.role === "admin"}
-                >
-                  <Dashboard />
-                </ProtectedRoute>
-              }
-            />
-            <Route
-              path="/admin/createcourse"
-              element={
-                <ProtectedRoute
-                  adminRoute={true}
-                  isAuthenticated={isAuthenticated}
-                  isAdmin={user && user.role === "admin"}
-                >
-                  <CreateCourse />
-                </ProtectedRoute>
-              }
-            />
-            <Route
-              path="/admin/courses"
-              element={
-                <ProtectedRoute
-                  adminRoute={true}
-                  isAuthenticated={isAuthenticated}
-                  isAdmin={user && user.role === "admin"}
-                >
-                  <AdminCourses />
-                </ProtectedRoute>
-              }
-            />
-            <Route
-              path="/admin/users"
-              element={
-                <ProtectedRoute
-                  adminRoute={true}
-                  isAuthenticated={isAuthenticated}
-                  isAdmin={user && user.role === "admin"}
-                >
-                  <Users />
-                </ProtectedRoute>
-              }
-            />
-          </Routes>
+          {/* Admin Routes */}
+          <Route
+            path="/admin/dashboard"
+            element={
+              <ProtectedRoute
+                adminRoute={true}
+                isAuthenticated={isAuthenticated}
+                isAdmin={user && user.role === "admin"}
+              >
+                <Dashboard />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/admin/createcourse"
+            element={
+              <ProtectedRoute
+                adminRoute={true}
+                isAuthenticated={isAuthenticated}
+                isAdmin={user && user.role === "admin"}
+              >
+                <CreateCourse />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/admin/courses"
+            element={
+              <ProtectedRoute
+                adminRoute={true}
+                isAuthenticated={isAuthenticated}
+                isAdmin={user && user.role === "admin"}
+              >
+                <AdminCourses />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/admin/users"
+            element={
+              <ProtectedRoute
+                adminRoute={true}
+                isAuthenticated={isAuthenticated}
+                isAdmin={user && user.role === "admin"}
+              >
+                <Users />
+              </ProtectedRoute>
+            }
+          />
+        </Routes>
 
-          <Footer />
-          <Toaster />
-        </>
-      )}
+        <Footer />
+        <Toaster />
+      </>
     </Router>
   );
 }
